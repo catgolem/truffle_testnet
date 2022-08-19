@@ -18,11 +18,11 @@
  *
  */
 
-// require('dotenv').config();
-// const mnemonic = process.env["MNEMONIC"];
-// const infuraProjectId = process.env["INFURA_PROJECT_ID"];
+require('dotenv').config();
+const mnemonic = process.env["MNEMONIC"];
+const infuraProjectId = process.env["INFURA_PROJECT_ID"];
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 module.exports = {
   /**
@@ -77,6 +77,15 @@ module.exports = {
     //   network_id: 2111,   // This network is yours, in the cloud.
     //   production: true    // Treats this network as if it was a public net. (default: false)
     // }
+    rinkeby: {
+      provider: () => {
+        return new HDWalletProvider(
+          mnemonic,
+          `https://rinkeby.infura.io/v3/d9d5387283bb4821927364b543512ddc`
+        );
+      },
+      network_id: "*"
+    },
   },
 
   // Set default mocha options here, use special reporters, etc.
